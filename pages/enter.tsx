@@ -1,5 +1,6 @@
 import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import { UserContext } from "../lib/context";
+import SignOutButton from "../components/SignOutButton";
 
 import { useCallback, useContext, useEffect, useState } from "react";
 import debounce from 'lodash.debounce';
@@ -33,10 +34,6 @@ function SignInButton() {
       <img src={'/google.png'} /> Sign in with Google
     </button>
   )
-}
-
-function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign Out</button>
 }
 
 function UsernameForm() {

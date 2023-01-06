@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "../lib/context";
+import SignOutButton from "./SignOutButton";
 
 export default function Navbar() {
 
@@ -21,6 +22,7 @@ export default function Navbar() {
 												<button className="btn-blue">Write Posts</button>
 										</Link>
 								</li>
+								<SignOutButton />
 								<li>
 										<Link href={`/${username}`}>
 												<img src={user?.photoURL} />
