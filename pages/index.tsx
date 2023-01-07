@@ -56,7 +56,7 @@ export default function Home(props) {
 
   return (
     <main>
-      <PostFeed posts={posts} admin={false}/>
+      <PostFeed posts={posts} admin/>
 
       {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
 

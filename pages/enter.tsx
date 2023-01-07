@@ -49,7 +49,6 @@ function UsernameForm() {
 
   const onChange = (e) => {
     const val = e.target.value.toLowerCase();
-    // const re = /^(?=[a-zA-Z0-9._]{3-15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
     const re = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
     if (val.length < 3) {
