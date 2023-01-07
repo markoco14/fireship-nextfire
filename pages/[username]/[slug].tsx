@@ -2,6 +2,9 @@ import PostContent from '../../components/PostContent';
 import { firestore, getUserWithUsername, postToJSON } from '../../lib/firebase';
 
 import { useDocumentData } from 'react-firebase-hooks/firestore';
+import AuthCheck from '../../components/AuthCheck';
+import HeartButton from '../../components/HeartButton';
+import Link from 'next/link';
 
 // tutorial version
 // this version wasn't working at first
@@ -67,8 +70,18 @@ export default function Post(props) {
 
       <aside className="card">
         <p>
-          <strong>{post.heartCount || 0} {' '}&#10084;</strong>
+          <strong>{post.heartCount || 0} {' '} 💗</strong>
         </p>
+
+        <AuthCheck 
+          fallback={
+            <Link href="/enter">
+              <button>💗 Sign Up</button>
+            </Link>
+          }
+        >
+          <HeartButton postRef={postRef}/>
+        </AuthCheck>
       </aside>
       
     </main>
