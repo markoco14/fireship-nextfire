@@ -7,6 +7,7 @@ import { useRouter } from "next/router"
 
 import { useDocumentData } from "react-firebase-hooks/firestore"
 import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 import ReactMarkdown from "react-markdown";
 import Link from 'next/link';
 import { toast } from "react-hot-toast";
@@ -62,7 +63,16 @@ function PostManager() {
 
 
 function PostForm({ defaultValues, postRef, preview }) {
-	const { register, handleSubmit, reset, watch } = useForm({ defaultValues, mode: 'onChange' });
+	const { 
+		register, 
+		handleSubmit, 
+		reset, 
+		watch, 
+		formState, 
+		formState: { errors } 
+	} = useForm({ defaultValues, mode: 'onChange' });
+
+	const { isValid, isDirty } = formState;
 
 	const updatePost = async ({ content, published }) => {
 		await postRef.update({
@@ -86,14 +96,20 @@ function PostForm({ defaultValues, postRef, preview }) {
 
 			<div className={preview ? styles.hidden : styles.controls}>
 
-				<textarea name="content" {...register('content')}></textarea>
+				<textarea name="content" {...register('content', {
+					maxLength: {value: 20000, message: 'content is too long'},
+					minLength: {value: 10, message: 'content is too short' },
+					required: {value: true, message: 'content is required' },
+				})}></textarea>
+
+				<ErrorMessage errors={errors} name="content" render={({message}) => <p className='text-danger'>{ message }</p>}/>
 
 				<fieldset>
 					<input className={styles.checkbox} name="published" type="checkbox" {...register('published')} />
 					<label>Published</label>
 				</fieldset>
 
-				<button type="submit" className="btn-green">
+				<button type="submit" className="btn-green" disabled={!isDirty || !isValid}>
 					Save Changes
 				</button>
 			</div>
