@@ -6,13 +6,23 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBWxRkeReS3ZjxEdyT0rQoSFv8DYCjqQbI",
-    authDomain: "fireship-next-fire.firebaseapp.com",
-    projectId: "fireship-next-fire",
-    storageBucket: "fireship-next-fire.appspot.com",
-    messagingSenderId: "409474338777",
-    appId: "1:409474338777:web:6b6e2877c6d7ffde6b13c8",
+    apiKey: `${process.env.API_KEY}`,
+    authDomain: `${process.env.AUTH_DOMAIN}`,
+    projectId: `${process.env.PROJECT_ID}`,
+    storageBucket: `${process.env.STORAGE_BUCKET}`,
+    messagingSenderId: `${process.env.MESSAGING_SENDER_ID}`,
+    appId: `${process.env.APP_ID}`,
 };
+
+
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBWxRkeReS3ZjxEdyT0rQoSFv8DYCjqQbI",
+//     authDomain: "fireship-next-fire.firebaseapp.com",
+//     projectId: "fireship-next-fire",
+//     storageBucket: "fireship-next-fire.appspot.com",
+//     messagingSenderId: "409474338777",
+//     appId: "1:409474338777:web:6b6e2877c6d7ffde6b13c8",
+// };
 
 if (!firebase.apps.length) {
     initializeApp(firebaseConfig)
