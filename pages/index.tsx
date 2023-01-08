@@ -49,14 +49,13 @@ export default function Home(props) {
     if (newPosts.length < LIMIT) {
       setPostsEnd(true);
     }
-
-
+    
   };
 
 
   return (
     <main>
-      <PostFeed posts={posts} admin/>
+      <PostFeed posts={posts} admin={false}/>
 
       {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
 
