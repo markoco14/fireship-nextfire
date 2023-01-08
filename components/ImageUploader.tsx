@@ -9,7 +9,7 @@ export default function ImageUploader() {
 
 	const uploadFile = async (e) => {
 		// Get the file
-		const file = Array.from(e.target.files)[0];
+		const file = Array.from(e.target.files)[0] as Blob;
 		const extension = file.type.split('/')[1];
 
 		// Makes reference to the storage bucket location

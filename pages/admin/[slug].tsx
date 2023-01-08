@@ -12,6 +12,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import ReactMarkdown from "react-markdown";
 import Link from 'next/link';
 import { toast } from "react-hot-toast";
+import { DocumentReference } from 'firebase/firestore';
 
 
 export default function AdminPostEdit({ }) {
@@ -28,7 +29,7 @@ function PostManager() {
 	const router = useRouter();
 	const { slug } = router.query;
 
-	const postRef = firestore
+	const postRef: DocumentReference | any = firestore
 		.collection('users')
 		.doc(auth.currentUser.uid)
 		.collection('posts')

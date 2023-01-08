@@ -1,15 +1,15 @@
-import AuthCheck from "../../components/AuthCheck"
-import PostFeed from "../../components/PostFeed"
-import { UserContext } from "../../lib/context"
-import { firestore, auth, serverTimestamp } from "../../lib/firebase"
+import AuthCheck from "../../components/AuthCheck";
+import PostFeed from "../../components/PostFeed";
+import { UserContext } from "../../lib/context";
+import { firestore, auth, serverTimestamp } from "../../lib/firebase";
 
-import { use, useContext, useState } from "react"
-import { useRouter } from "next/router"
+import { useContext, useState } from "react";
+import { useRouter } from "next/router";
 
-import { useCollection } from "react-firebase-hooks/firestore"
+import { useCollection } from "react-firebase-hooks/firestore";
 import kebabCase from 'lodash.kebabcase';
-import { toast } from "react-hot-toast"
-import { doc } from "firebase/firestore"
+import { toast } from "react-hot-toast";
+import { CollectionReference, Query } from "firebase/firestore";
 
 export default function AdminPostsPage(props) {
     return (
@@ -28,7 +28,11 @@ function PostList() {
         .doc(auth.currentUser.uid)
         .collection('posts');
 
-    const query = ref.orderBy('createdAt');
+    console.log(typeof ref)
+
+    const query: Query | any = ref.orderBy('createdAt');
+    console.log(typeof query)
+    console.log(query)
 
     const [querySnapshot] = useCollection(query);
 

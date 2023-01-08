@@ -5,6 +5,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import AuthCheck from '../../components/AuthCheck';
 import HeartButton from '../../components/HeartButton';
 import Link from 'next/link';
+import { DocumentReference } from 'firebase/firestore';
 
 // tutorial version
 // this version wasn't working at first
@@ -57,7 +58,7 @@ export async function getStaticPaths() {
 export default function Post(props) {
   // hydration, real time listening to the database
   // updates heart count and content in real time
-  const postRef = firestore.doc(props.path);
+  const postRef: DocumentReference | any = firestore.doc(props.path);
   const [realtimePost] = useDocumentData(postRef);
   const post = realtimePost || props.post;
   
