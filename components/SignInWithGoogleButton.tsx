@@ -7,7 +7,7 @@ export default function SignInWithGoogleButton() {
     try {
       await signInWithPopup(auth, googleAuthProvider);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

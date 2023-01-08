@@ -28,11 +28,8 @@ function PostList() {
 				.doc(auth?.currentUser?.uid)
 				.collection('posts');
 
-		console.log(typeof ref)
 
 		const query: Query | any = ref.orderBy('createdAt');
-		console.log(typeof query)
-		console.log(query)
 
 		const [querySnapshot] = useCollection(query);
 
