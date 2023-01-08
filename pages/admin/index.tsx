@@ -25,7 +25,7 @@ export default function AdminPostsPage(props) {
 function PostList() {
 		const ref = firestore
 				.collection('users')
-				.doc(auth.currentUser.uid)
+				.doc(auth?.currentUser?.uid)
 				.collection('posts');
 
 		console.log(typeof ref)
