@@ -29,6 +29,7 @@ function PostList() {
 				.collection('posts');
 
 
+				
 		const query: Query | any = ref.orderBy('createdAt');
 
 		const [querySnapshot] = useCollection(query);
