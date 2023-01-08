@@ -2,6 +2,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
     apiKey: "AIzaSyBWxRkeReS3ZjxEdyT0rQoSFv8DYCjqQbI",
@@ -13,10 +15,12 @@ const firebaseConfig = {
 };
 
 if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
+    initializeApp(firebaseConfig)
 }
 
-export const auth = firebase.auth();
+// export const auth = firebase.auth();
+
+export const auth = getAuth(firebase.initializeApp(firebaseConfig));
 
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
@@ -27,7 +31,6 @@ export const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
 export const fromMillis = firebase.firestore.Timestamp.fromMillis;
 export const serverTimestamp = firebase.firestore.FieldValue.serverTimestamp;
 export const increment = firebase.firestore.FieldValue.increment;
-
 
 /// Helper functions
 

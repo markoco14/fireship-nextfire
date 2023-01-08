@@ -1,6 +1,7 @@
-import { auth, firestore, googleAuthProvider } from "../lib/firebase";
+import { firestore } from "../lib/firebase";
 import { UserContext } from "../lib/context";
 import SignOutButton from "../components/SignOutButton";
+import SignInWithGoogleButton from "../components/SignInWithGoogleButton";
 
 import { useCallback, useContext, useEffect, useState } from "react";
 import debounce from 'lodash.debounce';
@@ -14,26 +15,10 @@ export default function EnterPage({}) {
       {user ?
         !username ? <UsernameForm /> : <SignOutButton />
         :
-        <SignInButton />
+        <SignInWithGoogleButton />
       }
     </main>
   );
-}
-
-function SignInButton() {
-  const signInWithGoogle = async () => {
-    try {
-      await auth.signInWithPopup(googleAuthProvider);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  return (
-    <button className="btn-google" onClick={signInWithGoogle}>
-      <img src={'/google.png'} /> Sign in with Google
-    </button>
-  )
 }
 
 function UsernameForm() {

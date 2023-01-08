@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useCollection } from "react-firebase-hooks/firestore";
 import kebabCase from 'lodash.kebabcase';
 import { toast } from "react-hot-toast";
-import { CollectionReference, Query } from "firebase/firestore";
+import { Query } from "firebase/firestore";
 
 export default function AdminPostsPage(props) {
 		return (
